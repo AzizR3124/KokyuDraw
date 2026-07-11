@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Profile - KOKYUDRAW</title>
+
+
+<link rel="stylesheet" href="relog/profile.css">
+<link rel="stylesheet" href="style.css">
+
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <button class="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- Desktop Search -->
+        <div class="desktop-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search..."
+            >
+
+        </div>
+
+        <a href="#" class="logo">
+            KOKYU<span>DRAW</span>
+        </a>
+
+        <nav class="nav-links">
+
+            <a href="#home">Home</a>
+
+            <a href="#event">Event</a>
+
+            <a href="#gallery">Gallery</a>
+
+            <a href="#shop">Shop</a>
+
+            <a href="#about">About</a>
+
+        </nav>
+
+        <!-- LOGIN / PROFILE -->
+        <div id="authMenu"></div>
+
+        <button class="theme-btn">
+
+            <i class="fa-solid fa-moon"></i>
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+
+
+<!-- ===========================
+MOBILE MENU
+=========================== -->
+
+<div class="mobile-menu">
+
+    <div class="mobile-top">
+
+        <h2>KOKYUDRAW</h2>
+
+        <button class="close-menu">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+
+    <a href="#home">Home</a>
+
+    <a href="#event">Event</a>
+
+    <a href="#gallery">Gallery</a>
+
+    <a href="#shop">Shop</a>
+
+    <a href="#about">About</a>
+
+
+    <div class="mobile-search">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input 
+            type="search"
+            id="mobileSearch"
+            placeholder="Search..."
+        >
+
+    </div>
+
+
+</div>
+
+<div class="overlay"></div>
+
+
+
+
+
+<main class="profile-page">
+
+
+<section class="profile-card">
+
+
+<img 
+src="img/default-avatar.png"
+class="profile-img"
+>
+
+
+<h2 id="username">
+Username
+</h2>
+
+
+<p id="email">
+Email
+</p>
+
+
+<button id="logoutBtn">
+Logout
+</button>
+
+
+</section>
+
+
+
+<section class="recommendation">
+
+
+<h2>
+Recommended Comics
+</h2>
+
+
+<div class="comic-list">
+
+<!-- nanti isi komik -->
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+
+
+
+<footer>
+
+    <div class="footer-content">
+
+        <h2>
+
+            KOKYUDRAW
+
+        </h2>
+
+        <p>
+
+            Anime • Manga • Art Community
+
+        </p>
+
+        <div class="footer-social">
+
+            <a href="#">
+
+                <i class="fa-brands fa-instagram"></i>
+
+            </a>
+
+            <a href="#">
+
+                <i class="fa-brands fa-tiktok"></i>
+
+            </a>
+
+            <a href="#">
+
+                <i class="fa-brands fa-youtube"></i>
+
+            </a>
+
+        </div>
+
+        <p class="copyright">
+
+            © 2026 KokyuDraw. All Rights Reserved.
+
+        </p>
+
+    </div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="relog/navbar.js"></script>
+
+<script src="relog/profile.js"></script>
+<script src="script.js"></script>
+
+</body>
+
+</html>
