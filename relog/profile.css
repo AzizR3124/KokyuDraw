@@ -1,0 +1,132 @@
+/* =========================
+   PROFILE PAGE
+========================= */
+
+.profile-page{
+
+    min-height: 80vh;
+
+    padding: 60px 20px;
+
+}
+
+
+/* PROFILE CARD */
+
+.profile-card{
+
+    max-width: 450px;
+
+    margin: auto;
+
+    text-align: center;
+
+    background: #111;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+
+}
+
+
+.profile-img{
+
+    width: 120px;
+
+    height: 120px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    margin-bottom: 20px;
+
+    border: 3px solid white;
+
+}
+
+
+.profile-card h2{
+
+    color: white;
+
+    font-size: 24px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.profile-card p{
+
+    color: #aaa;
+
+    margin-bottom: 25px;
+
+}
+
+
+
+/* LOGOUT BUTTON */
+
+#logoutBtn{
+
+    border: none;
+
+    background: #ff3c3c;
+
+    color:white;
+
+    padding: 10px 30px;
+
+    border-radius: 25px;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    transition:0.3s;
+
+}
+
+
+#logoutBtn:hover{
+
+    transform: translateY(-2px);
+
+    opacity:0.8;
+
+}
+
+
+
+/* RECOMMENDATION */
+
+.recommendation{
+
+    max-width:1100px;
+
+    margin:60px auto 0;
+
+}
+
+
+.recommendation h2{
+
+    color:white;
+
+    margin-bottom:20px;
+
+}
+
+
+.comic-list{
+
+    display:flex;
+
+    gap:20px;
+
+}
