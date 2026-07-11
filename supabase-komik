@@ -1,0 +1,158 @@
+// =====================================
+// RECOMMENDED COMICS FROM SUPABASE
+// =====================================
+
+
+async function loadRecommendedComics(){
+
+
+    const comicRanking = document.getElementById("comicRanking");
+
+
+    // kalau halaman tidak punya rekomendasi
+    if(!comicRanking) return;
+
+
+
+    try{
+
+
+        const { data, error } = await supabaseClient
+
+            .from("komik")
+
+            .select("*")
+
+            .eq("rekomendasi", true)
+
+            .order("id", { ascending:false });
+
+
+
+        if(error){
+
+            console.log("Supabase Error:", error);
+
+            comicRanking.innerHTML = `
+                <p>
+                    Gagal memuat komik
+                </p>
+            `;
+
+            return;
+
+        }
+
+
+
+        comicRanking.innerHTML = "";
+
+
+
+        data.forEach((comic,index)=>{
+
+
+            const comicCard = document.createElement("div");
+
+
+            comicCard.className = "comic-item";
+
+
+
+            comicCard.innerHTML = `
+
+
+                <div class="comic-cover-box">
+
+
+                    <img 
+                    src="${comic.cover}" 
+                    alt="${comic.judul}">
+
+
+
+                    <div class="comic-number">
+
+                        ${index + 1}
+
+                    </div>
+
+
+                </div>
+
+
+
+
+                <div class="comic-info">
+
+
+                    <h3>
+
+                        ${comic.judul}
+
+                    </h3>
+
+
+
+
+                    <div class="genre">
+
+                        ${comic.genre || "Unknown"}
+
+                    </div>
+
+
+
+
+                    <p class="synopsis">
+
+                        ${comic.deskripsi || "Belum ada deskripsi"}
+
+                    </p>
+
+
+
+
+                    <div class="creator">
+
+                        Creator:
+
+                        <b>
+                            ${comic.creator || "Unknown"}
+                        </b>
+
+                    </div>
+
+
+
+                </div>
+
+
+            `;
+
+
+
+            comicRanking.appendChild(comicCard);
+
+
+
+        });
+
+
+
+    }catch(error){
+
+
+        console.log(error);
+
+
+    }
+
+
+}
+
+
+
+// jalankan
+
+loadRecommendedComics();
