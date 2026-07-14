@@ -6,9 +6,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
     <title>Login - KOKYUDRAW</title>
 
-    <link rel="stylesheet" href="relog/stylerelog.css">
+
+    <link rel="stylesheet" href="loadcss/relog.css">
+    <link rel="stylesheet" href="loadcss/navbar.css">
+    <link rel="stylesheet" href="loadcss/sidebar.css">
+    <link rel="stylesheet" href="loadcss/global.css">
 
 </head>
 
@@ -22,33 +31,114 @@
     <div class="auth-box">
 
 
-        <h2>Login</h2>
+        <!-- LOGO -->
+
+        <div class="auth-logo">
+
+        
+        </div>
 
 
-       <input 
-type="email"
-id="loginEmail"
-placeholder="Email"
-autocomplete="email">
 
-        <input 
-type="password"
-id="loginPassword"
-placeholder="Password"
-autocomplete="current-password">
+        <h2>Welcome Back</h2>
 
 
-        <button id="loginBtn">
+        <p class="auth-subtitle">
+
+            Login to continue your KOKYUDRAW journey.
+
+        </p>
+
+
+
+
+        <!-- EMAIL -->
+
+        <div class="input-group">
+
+
+            <input
+            type="email"
+            id="loginEmail"
+            placeholder="Email Address"
+            autocomplete="email">
+
+
+            <small
+            class="error-text"
+            id="loginEmailError">
+            </small>
+
+
+        </div>
+
+
+
+
+
+        <!-- PASSWORD -->
+
+        <div class="input-group">
+
+
+            <input
+            type="password"
+            id="loginPassword"
+            placeholder="Password"
+            autocomplete="current-password">
+
+
+
+            <button
+            type="button"
+            class="toggle-password"
+            data-target="loginPassword">
+
+
+                <i class="fa-regular fa-eye"></i>
+
+
+            </button>
+
+
+
+            <small
+            class="error-text"
+            id="loginPasswordError">
+            </small>
+
+
+        </div>
+
+
+
+
+        <button
+        id="loginBtn"
+        type="button">
+
             Login
+
         </button>
 
 
+
+
         <p>
+
+
             Belum punya akun?
+
+
             <a href="register.html">
+
                 Daftar
+
             </a>
+
+
         </p>
+
 
 
     </div>
@@ -58,8 +148,12 @@ autocomplete="current-password">
 
 
 
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="relog/authrelog.js"></script>
+
+<script src="loadjs/relog.js"></script>
+
+
 </body>
 
 </html>
