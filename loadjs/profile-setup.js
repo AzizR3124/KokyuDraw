@@ -23,20 +23,23 @@ window.supabase.createClient(
 
 
 
-
 // =========================
-// CHECK USER
+// GLOBAL USER
 // =========================
 
 let currentUser = null;
 
 
+
+// =========================
+// CHECK USER
+// =========================
+
 async function checkUser(){
 
 
-    const {
-        data
-    } = await supabaseClient.auth.getUser();
+    const { data } =
+    await supabaseClient.auth.getUser();
 
 
 
@@ -50,15 +53,68 @@ async function checkUser(){
     }
 
 
-    currentUser =
-    data.user;
+    currentUser = data.user;
 
+
+    loadProfile();
 
 }
 
 
+
 checkUser();
 
+
+
+
+// =========================
+// LOAD PROFILE DATA
+// =========================
+
+async function loadProfile(){
+
+
+    const { data, error } =
+    await supabaseClient
+    .from("users")
+    .select("*")
+    .eq(
+        "id",
+        currentUser.id
+    )
+    .single();
+
+
+
+    if(error){
+
+        console.log(error);
+        return;
+
+    }
+
+
+
+    if(data){
+
+
+        document.getElementById(
+            "profileUsername"
+        ).value =
+        data.username || "";
+
+
+
+        document.getElementById(
+            "profileBio"
+        ).value =
+        data.bio || "";
+
+
+    }
+
+
+}
 
 
 
@@ -68,11 +124,16 @@ checkUser();
 // =========================
 
 const avatarInput =
-document.getElementById("avatarInput");
+document.getElementById(
+    "avatarInput"
+);
+
 
 
 const avatarPreview =
-document.getElementById("avatarPreview");
+document.getElementById(
+    "avatarPreview"
+);
 
 
 
@@ -81,7 +142,7 @@ if(avatarInput){
 
     avatarInput.addEventListener(
         "change",
-        ()=>{
+        function(){
 
 
             const file =
@@ -97,15 +158,14 @@ if(avatarInput){
 
 
                 reader.onload =
-                (e)=>{
+                function(e){
 
 
                     avatarPreview.src =
                     e.target.result;
 
 
-                }
-
+                };
 
 
                 reader.readAsDataURL(file);
@@ -119,6 +179,10 @@ if(avatarInput){
 
 
 }
+
+
+
+
 // =========================
 // SAVE PROFILE
 // =========================
@@ -126,30 +190,18 @@ if(avatarInput){
 async function saveProfile(){
 
 
-    console.log("SAVE DIKLIK");
+    console.log(
+        "SAVE PROFILE CLICK"
+    );
+
 
 
     if(!currentUser){
 
-        alert("User belum login");
-        return;
+        alert(
+            "User belum login"
+        );
 
-    }
-
-
-
-    const usernameInput =
-document.getElementById("profileUsername");
-
-
-const bioInput =
-document.getElementById("profileBio");
-
-
-
-    if(!usernameInput || !bioInput){
-
-        alert("Input profile tidak ditemukan");
         return;
 
     }
@@ -157,20 +209,31 @@ document.getElementById("profileBio");
 
 
     const username =
-    usernameInput.value.trim();
+    document.getElementById(
+        "profileUsername"
+    ).value.trim();
+
 
 
     const bio =
-    bioInput.value.trim();
+    document.getElementById(
+        "profileBio"
+    ).value.trim();
 
 
 
     if(username === ""){
 
-        alert("Username wajib diisi");
+
+        alert(
+            "Username wajib diisi"
+        );
+
+
         return;
 
     }
+
 
 
 
@@ -190,15 +253,20 @@ document.getElementById("profileBio");
 
 
 
+
     if(error){
 
+
         console.log(error);
+
+
         alert(
-            "Gagal menyimpan: " 
-            + error.message
+            error.message
         );
 
+
         return;
+
 
     }
 
@@ -207,6 +275,7 @@ document.getElementById("profileBio");
     alert(
         "Profile berhasil disimpan"
     );
+
 
 
     window.location.href =
@@ -219,7 +288,7 @@ document.getElementById("profileBio");
 
 
 // =========================
-// BUTTON SAVE EVENT
+// SAVE BUTTON
 // =========================
 
 const saveProfileBtn =
