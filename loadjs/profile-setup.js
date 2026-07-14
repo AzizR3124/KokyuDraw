@@ -4,7 +4,7 @@
 
 
 // =========================
-// SUPABASE CONNECTION
+// SUPABASE
 // =========================
 
 const supabaseUrl =
@@ -23,16 +23,18 @@ window.supabase.createClient(
 
 
 
+
 // =========================
-// GLOBAL USER
+// USER
 // =========================
 
 let currentUser = null;
 
 
 
+
 // =========================
-// CHECK USER
+// CHECK LOGIN
 // =========================
 
 async function checkUser(){
@@ -58,17 +60,14 @@ async function checkUser(){
 
     loadProfile();
 
+
 }
-
-
-
-checkUser();
 
 
 
 
 // =========================
-// LOAD PROFILE DATA
+// LOAD OLD PROFILE
 // =========================
 
 async function loadProfile(){
@@ -88,7 +87,11 @@ async function loadProfile(){
 
     if(error){
 
-        console.log(error);
+        console.log(
+            "PROFILE BELUM ADA",
+            error.message
+        );
+
         return;
 
     }
@@ -129,7 +132,6 @@ document.getElementById(
 );
 
 
-
 const avatarPreview =
 document.getElementById(
     "avatarPreview"
@@ -154,7 +156,6 @@ if(avatarInput){
 
                 const reader =
                 new FileReader();
-
 
 
                 reader.onload =
@@ -191,7 +192,7 @@ async function saveProfile(){
 
 
     console.log(
-        "SAVE PROFILE CLICK"
+        "SAVE CLICK"
     );
 
 
@@ -199,7 +200,7 @@ async function saveProfile(){
     if(!currentUser){
 
         alert(
-            "User belum login"
+            "Belum login"
         );
 
         return;
@@ -224,11 +225,9 @@ async function saveProfile(){
 
     if(username === ""){
 
-
         alert(
-            "Username wajib diisi"
+            "Username kosong"
         );
-
 
         return;
 
@@ -238,21 +237,16 @@ async function saveProfile(){
 
 
     const { error } =
-await supabaseClient
-.from("users")
-.upsert({
+    await supabaseClient
+    .from("users")
+    .upsert({
 
-    id: currentUser.id,
-    username: username,
-    bio: bio,
-    role: "user"
+        id: currentUser.id,
+        username: username,
+        bio: bio,
+        role: "user"
 
-});
-    .eq(
-        "id",
-        currentUser.id
-    );
-
+    });
 
 
 
@@ -269,15 +263,13 @@ await supabaseClient
 
         return;
 
-
     }
 
 
 
     alert(
-        "Profile berhasil disimpan"
+        "Profile tersimpan"
     );
-
 
 
     window.location.href =
@@ -290,23 +282,21 @@ await supabaseClient
 
 
 // =========================
-// SAVE BUTTON
+// BUTTON
 // =========================
 
-const saveProfileBtn =
-document.getElementById(
+document
+.getElementById(
     "saveProfileBtn"
+)
+.addEventListener(
+    "click",
+    saveProfile
 );
 
 
 
-if(saveProfileBtn){
 
+// START
 
-    saveProfileBtn.addEventListener(
-        "click",
-        saveProfile
-    );
-
-
-}
+checkUser();
