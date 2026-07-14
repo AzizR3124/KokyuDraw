@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Setup Profile - KOKYUDRAW</title>
+
+
+<link rel="icon" type="image/png" href="img/favicon.png">
+
+
+<link rel="stylesheet" href="loadcss/relog.css">
+<link rel="stylesheet" href="loadcss/profile-setup.css">
+
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+</head>
+
+
+<body>
+
+
+<div class="auth-container">
+
+
+<div class="auth-box">
+
+
+
+
+
+
+<h2>
+Complete Profile
+</h2>
+
+
+
+<p class="auth-subtitle">
+
+Tell us about yourself before joining KOKYUDRAW.
+
+</p>
+
+
+
+
+
+<!-- Username -->
+
+<div class="input-group">
+
+
+<input
+type="text"
+id="profileUsername"
+placeholder="Username"
+maxlength="20">
+
+
+<small
+class="error-text"
+id="usernameError">
+</small>
+
+
+</div>
+
+
+
+
+
+
+<!-- Bio -->
+
+<div class="input-group">
+
+
+<textarea
+id="profileBio"
+placeholder="Bio (optional)"
+maxlength="150"></textarea>
+
+
+<small
+class="error-text"
+id="bioError">
+</small>
+
+
+</div>
+
+
+
+
+
+<!-- Avatar -->
+
+<div class="avatar-upload">
+
+
+<img
+src="img/default-avatar.png"
+id="avatarPreview">
+
+
+<input
+type="file"
+id="avatarInput"
+accept="image/*">
+
+
+</div>
+
+
+
+
+
+<button
+id="saveProfileBtn">
+
+Save Profile
+
+</button>
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="loadjs/profile-setup.js"></script>
+
+
+</body>
+
+</html>
