@@ -1,8 +1,3 @@
-// ==========================================================
-// KOKYUDRAW PROFILE SETUP
-// ==========================================================
-
-
 // =========================
 // SUPABASE
 // =========================
@@ -10,17 +5,14 @@
 const supabaseUrl =
 "https://dalxlbgqiczesidujcuf.supabase.co";
 
-
 const supabaseKey =
 "sb_publishable_S74FfRR4HXhb2P2dkoZY1A_FitlYnRW";
-
 
 const supabaseClient =
 window.supabase.createClient(
     supabaseUrl,
     supabaseKey
 );
-
 
 
 
@@ -32,24 +24,19 @@ let currentUser = null;
 
 
 
-
 // =========================
-// CHECK LOGIN
+// CHECK USER
 // =========================
 
-async function checkUser(){
+async function init(){
 
-
-    const { data } =
+    const { data, error } =
     await supabaseClient.auth.getUser();
 
 
+    if(error || !data.user){
 
-    if(!data.user){
-
-        window.location.href =
-        "login.html";
-
+        window.location.href = "login.html";
         return;
 
     }
@@ -58,66 +45,17 @@ async function checkUser(){
     currentUser = data.user;
 
 
-    loadProfile();
-
-
-}
-
-
-
-
-// =========================
-// LOAD OLD PROFILE
-// =========================
-
-async function loadProfile(){
-
-
-    const { data, error } =
-    await supabaseClient
-    .from("users")
-    .select("*")
-    .eq(
-        "id",
+    console.log(
+        "LOGIN USER:",
         currentUser.id
-    )
-    .single();
-
-
-
-    if(error){
-
-        console.log(
-            "PROFILE BELUM ADA",
-            error.message
-        );
-
-        return;
-
-    }
-
-
-
-    if(data){
-
-
-        document.getElementById(
-            "profileUsername"
-        ).value =
-        data.username || "";
-
-
-
-        document.getElementById(
-            "profileBio"
-        ).value =
-        data.bio || "";
-
-
-    }
+    );
 
 
 }
+
+
+
+init();
 
 
 
@@ -127,25 +65,18 @@ async function loadProfile(){
 // =========================
 
 const avatarInput =
-document.getElementById(
-    "avatarInput"
-);
+document.getElementById("avatarInput");
 
 
 const avatarPreview =
-document.getElementById(
-    "avatarPreview"
-);
+document.getElementById("avatarPreview");
 
 
-
-if(avatarInput){
-
+if(avatarInput && avatarPreview){
 
     avatarInput.addEventListener(
         "change",
-        function(){
-
+        ()=>{
 
             const file =
             avatarInput.files[0];
@@ -153,31 +84,25 @@ if(avatarInput){
 
             if(file){
 
-
                 const reader =
                 new FileReader();
 
 
                 reader.onload =
-                function(e){
-
+                e=>{
 
                     avatarPreview.src =
                     e.target.result;
-
 
                 };
 
 
                 reader.readAsDataURL(file);
 
-
             }
-
 
         }
     );
-
 
 }
 
@@ -192,15 +117,14 @@ async function saveProfile(){
 
 
     console.log(
-        "SAVE CLICK"
+        "SAVE BUTTON CLICK"
     );
-
 
 
     if(!currentUser){
 
         alert(
-            "Belum login"
+            "User belum siap"
         );
 
         return;
@@ -212,27 +136,14 @@ async function saveProfile(){
     const username =
     document.getElementById(
         "profileUsername"
-    ).value.trim();
+    ).value;
 
 
 
     const bio =
     document.getElementById(
         "profileBio"
-    ).value.trim();
-
-
-
-    if(username === ""){
-
-        alert(
-            "Username kosong"
-        );
-
-        return;
-
-    }
-
+    ).value;
 
 
 
@@ -252,14 +163,11 @@ async function saveProfile(){
 
     if(error){
 
-
         console.log(error);
-
 
         alert(
             error.message
         );
-
 
         return;
 
@@ -268,7 +176,7 @@ async function saveProfile(){
 
 
     alert(
-        "Profile tersimpan"
+        "Profile berhasil disimpan"
     );
 
 
@@ -285,18 +193,32 @@ async function saveProfile(){
 // BUTTON
 // =========================
 
-document
-.getElementById(
-    "saveProfileBtn"
-)
-.addEventListener(
-    "click",
-    saveProfile
-);
+window.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+
+    const btn =
+    document.getElementById(
+        "saveProfileBtn"
+    );
+
+
+    console.log(
+        "BUTTON:",
+        btn
+    );
 
 
 
+    if(btn){
 
-// START
+        btn.addEventListener(
+            "click",
+            saveProfile
+        );
 
-checkUser();
+    }
+
+
+});
