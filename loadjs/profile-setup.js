@@ -139,11 +139,11 @@ async function saveProfile(){
 
 
     const usernameInput =
-    document.getElementById("username");
+document.getElementById("profileUsername");
 
 
-    const bioInput =
-    document.getElementById("bio");
+const bioInput =
+document.getElementById("profileBio");
 
 
 
