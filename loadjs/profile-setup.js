@@ -1,302 +1,166 @@
 // ==========================================================
-// KOKYUDRAW PROFILE SETUP
+// KOKYUDRAW PROFILE SETUP & MANAGEMENT
 // ==========================================================
-
 
 // =========================
 // SUPABASE CONNECTION
 // =========================
+const supabaseUrl = "https://dalxlbgqiczesidujcuf.supabase.co";
 
-const supabaseUrl =
-"https://dalxlbgqiczesidujcuf.supabase.co";
+// Catatan: Ganti key di bawah ini dengan Anon Key asli Anda dari dashboard Supabase jika masih eror!
+const supabaseKey = "sb_publishable_S74FfRR4HXhb2P2dkoZY1A_FitlYnRW"; 
 
-
-const supabaseKey =
-"sb_publishable_S74FfRR4HXhb2P2dkoZY1A_FitlYnRW";
-
-
-const supabaseClient =
-window.supabase.createClient(
+const supabaseClient = window.supabase.createClient(
     supabaseUrl,
     supabaseKey
 );
 
-
-
 // =========================
 // GLOBAL USER
 // =========================
-
 let currentUser = null;
 
-
-
 // =========================
-// CHECK USER
+// CHECK USER & INITIALIZATION
 // =========================
-
 async function checkUser(){
-
-
-    const { data } =
-    await supabaseClient.auth.getUser();
-
-
+    const { data } = await supabaseClient.auth.getUser();
 
     if(!data.user){
-
-        window.location.href =
-        "login.html";
-
+        window.location.href = "login.html";
         return;
-
     }
 
-
     currentUser = data.user;
-
-
+    
+    // Jalankan fungsi setelah user dipastikan login
     loadProfile();
-
+    initLogoutButton(); 
 }
 
-
-
-checkUser();
-
-
-
+// Jalankan pengecekan setelah DOM selesai dimuat sepenuhnya
+document.addEventListener("DOMContentLoaded", checkUser);
 
 // =========================
 // LOAD PROFILE DATA
 // =========================
-
 async function loadProfile(){
-
-
-    const { data, error } =
-    await supabaseClient
-    .from("users")
-    .select("*")
-    .eq(
-        "id",
-        currentUser.id
-    )
-    .single();
-
-
+    const { data, error } = await supabaseClient
+        .from("users")
+        .select("*")
+        .eq("id", currentUser.id)
+        .single();
 
     if(error){
-
-        console.log(error);
+        console.error("Gagal mengambil data dari tabel Supabase:", error.message, error.details);
         return;
-
     }
-
-
 
     if(data){
+        // Menyelaraskan dengan ID yang ada di file HTML Anda
+        const usernameEl = document.getElementById("username");
+        const userTagEl = document.getElementById("userTag");
+        const bioEl = document.getElementById("profileBio");
+        const roleEl = document.getElementById("roleBadge");
+        const avatarEl = document.getElementById("profileAvatar");
 
-
-        document.getElementById(
-            "profileUsername"
-        ).value =
-        data.username || "";
-
-
-
-        document.getElementById(
-            "profileBio"
-        ).value =
-        data.bio || "";
-
-
-    }
-
-
-}
-
-
-
-
-// =========================
-// AVATAR PREVIEW
-// =========================
-
-const avatarInput =
-document.getElementById(
-    "avatarInput"
-);
-
-
-
-const avatarPreview =
-document.getElementById(
-    "avatarPreview"
-);
-
-
-
-if(avatarInput){
-
-
-    avatarInput.addEventListener(
-        "change",
-        function(){
-
-
-            const file =
-            avatarInput.files[0];
-
-
-            if(file){
-
-
-                const reader =
-                new FileReader();
-
-
-
-                reader.onload =
-                function(e){
-
-
-                    avatarPreview.src =
-                    e.target.result;
-
-
-                };
-
-
-                reader.readAsDataURL(file);
-
-
-            }
-
-
+        if(usernameEl) usernameEl.textContent = data.username || "Username";
+        if(userTagEl) userTagEl.textContent = data.username ? "@" + data.username : "@username";
+        if(bioEl) bioEl.textContent = data.bio || "No bio yet.";
+        if(roleEl) roleEl.textContent = data.role || "User";
+        
+        if(data.avatar && avatarEl){
+            avatarEl.src = data.avatar;
         }
-    );
-
-
+    }
 }
 
+// =========================
+// AVATAR PREVIEW (Jika ada input file di halaman setup)
+// =========================
+const avatarInput = document.getElementById("avatarInput");
+const avatarPreview = document.getElementById("avatarPreview");
 
-
+if(avatarInput && avatarPreview){
+    avatarInput.addEventListener("change", function(){
+        const file = avatarInput.files[0];
+        if(file){
+            const reader = new FileReader();
+            reader.onload = function(e){
+                avatarPreview.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+}
 
 // =========================
-// SAVE PROFILE
+// SAVE / UPDATE PROFILE
 // =========================
-
 async function saveProfile(){
-
-
-    console.log(
-        "SAVE PROFILE CLICK"
-    );
-
-
+    console.log("SAVE PROFILE CLICK");
 
     if(!currentUser){
-
-        alert(
-            "User belum login"
-        );
-
+        alert("User belum login");
         return;
-
     }
 
+    // Mengambil nilai input (Ganti ID sesuai dengan form input Anda jika ini halaman edit)
+    const inputUsernameEl = document.getElementById("profileUsername") || document.getElementById("username");
+    const inputBioEl = document.getElementById("profileBio");
 
-
-    const username =
-    document.getElementById(
-        "profileUsername"
-    ).value.trim();
-
-
-
-    const bio =
-    document.getElementById(
-        "profileBio"
-    ).value.trim();
-
-
+    const username = inputUsernameEl ? inputUsernameEl.value.trim() : "";
+    const bio = inputBioEl ? (inputBioEl.value || inputBioEl.textContent).trim() : "";
 
     if(username === ""){
-
-
-        alert(
-            "Username wajib diisi"
-        );
-
-
+        alert("Username wajib diisi");
         return;
-
     }
 
-
-
-
-    .from("users")
-.update({
-    username: username,
-    bio: bio
-})
-.eq("id", currentUser.id);
-
-
+    const { error } = await supabaseClient
+        .from("users")
+        .upsert({
+            id: currentUser.id,
+            username: username,
+            bio: bio,
+            role: "user"
+        });
 
     if(error){
-
-
-        console.log(error);
-
-
-        alert(
-            error.message
-        );
-
-
+        console.error("Gagal menyimpan ke Supabase:", error);
+        alert("Error: " + error.message);
         return;
-
-
     }
 
-
-
-    alert(
-        "Profile berhasil disimpan"
-    );
-
-
-
-    window.location.href =
-    "profile.html";
-
-
+    alert("Profile berhasil disimpan");
+    window.location.href = "profile.html";
 }
 
-
-
-
 // =========================
-// SAVE BUTTON
+// SAVE BUTTON TRIGGER
 // =========================
-
-const saveProfileBtn =
-document.getElementById(
-    "saveProfileBtn"
-);
-
-
-
+const saveProfileBtn = document.getElementById("saveProfileBtn");
 if(saveProfileBtn){
+    saveProfileBtn.addEventListener("click", saveProfile);
+}
 
+// =========================
+// FUNGSI LOGOUT (BARU)
+// =========================
+function initLogoutButton() {
+    const logoutBtn = document.getElementById("logoutBtn");
+    if(logoutBtn) {
+        logoutBtn.addEventListener("click", async () => {
+            const yakin = confirm("Apakah Anda yakin ingin logout dari KOKYUDRAW?");
+            if (!yakin) return;
 
-    saveProfileBtn.addEventListener(
-        "click",
-        saveProfile
-    );
-
-
+            const { error } = await supabaseClient.auth.signOut();
+            if(error) {
+                alert("Gagal logout: " + error.message);
+            } else {
+                alert("Berhasil logout!");
+                window.location.href = "login.html";
+            }
+        });
+    }
 }
