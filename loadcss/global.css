@@ -1,0 +1,173 @@
+/* =====================================
+   GOOGLE FONT
+===================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+
+/* =====================================
+   RESET
+===================================== */
+
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+    font-family:'Poppins',sans-serif;
+
+}
+
+
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+
+
+body{
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    overflow-x:hidden;
+
+    transition:.4s;
+
+}
+
+
+
+
+/* =====================================
+   ROOT COLOR
+===================================== */
+
+
+:root{
+
+
+    --bg:#D9D9D9;
+
+
+    --navbar:#E5E5E5;
+
+
+    --card:#F2F2F2;
+
+
+    --text:#111111;
+
+
+    --red:#C1121F;
+
+
+    --orange:#FF7B00;
+
+
+    --shadow:0 15px 40px rgba(0,0,0,.15);
+
+
+}
+
+
+
+
+
+/* =====================================
+   DARK MODE
+===================================== */
+
+
+body.dark{
+
+
+    --bg:#0B0B0B;
+
+
+    --navbar:#151515;
+
+
+    --card:#1C1C1C;
+
+
+    --text:#F5F5F5;
+
+
+}
+
+
+
+
+
+body.dark .nav-links a{
+
+
+    color:white;
+
+
+}
+
+
+
+
+
+body.dark .section-title p,
+
+
+body.dark .event-info p,
+
+
+body.dark .about-text p,
+
+
+body.dark .product-card p{
+
+
+    color:#aaa;
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================
+   GLOBAL TRANSITION
+===================================== */
+
+
+body,
+.navbar,
+.mobile-menu,
+.product-card,
+.event-card,
+.gallery-item{
+
+
+    transition:
+
+
+    background .4s,
+
+
+    color .4s,
+
+
+    transform .4s;
+
+
+}
