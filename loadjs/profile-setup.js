@@ -238,14 +238,16 @@ async function saveProfile(){
 
 
     const { error } =
-    await supabaseClient
-    .from("users")
-    .update({
+await supabaseClient
+.from("users")
+.upsert({
 
-        username: username,
-        bio: bio
+    id: currentUser.id,
+    username: username,
+    bio: bio,
+    role: "user"
 
-    })
+});
     .eq(
         "id",
         currentUser.id
