@@ -119,3 +119,123 @@ if(avatarInput){
 
 
 }
+// =========================
+// SAVE PROFILE
+// =========================
+
+async function saveProfile(){
+
+
+    console.log("SAVE DIKLIK");
+
+
+    if(!currentUser){
+
+        alert("User belum login");
+        return;
+
+    }
+
+
+
+    const usernameInput =
+    document.getElementById("username");
+
+
+    const bioInput =
+    document.getElementById("bio");
+
+
+
+    if(!usernameInput || !bioInput){
+
+        alert("Input profile tidak ditemukan");
+        return;
+
+    }
+
+
+
+    const username =
+    usernameInput.value.trim();
+
+
+    const bio =
+    bioInput.value.trim();
+
+
+
+    if(username === ""){
+
+        alert("Username wajib diisi");
+        return;
+
+    }
+
+
+
+    const { error } =
+    await supabaseClient
+    .from("users")
+    .update({
+
+        username: username,
+        bio: bio
+
+    })
+    .eq(
+        "id",
+        currentUser.id
+    );
+
+
+
+    if(error){
+
+        console.log(error);
+        alert(
+            "Gagal menyimpan: " 
+            + error.message
+        );
+
+        return;
+
+    }
+
+
+
+    alert(
+        "Profile berhasil disimpan"
+    );
+
+
+    window.location.href =
+    "profile.html";
+
+
+}
+
+
+
+
+// =========================
+// BUTTON SAVE EVENT
+// =========================
+
+const saveProfileBtn =
+document.getElementById(
+    "saveProfileBtn"
+);
+
+
+
+if(saveProfileBtn){
+
+
+    saveProfileBtn.addEventListener(
+        "click",
+        saveProfile
+    );
+
+
+}
