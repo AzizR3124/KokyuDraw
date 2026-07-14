@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KokyuDraw</title>
+    
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    
+    <link rel="stylesheet" href="loadcss/home.css">
+    <link rel="stylesheet" href="loadcss/navbar.css">
+    <link rel="stylesheet" href="loadcss/sidebar.css">
+    <link rel="stylesheet" href="loadcss/global.css">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+    <!-- Supabase Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+</head>
+
+<body>
+
+<!-- ===========================
+NAVBAR
+=========================== -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+
+        <!-- MENU BUTTON -->
+
+        <button class="menu-btn" aria-label="Open Menu">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+
+
+        <!-- LOGO -->
+
+        <a href="home.html" class="logo">
+
+            KOKYU<span>DRAW</span>
+
+        </a>
+
+
+
+        <!-- DESKTOP NAVIGATION -->
+
+        <nav class="nav-links">
+
+         <a href="index.html" class="active">
+        Home
+         </a>
+
+         <a href="news.html">
+        News
+         </a>
+
+           <a href="comic.html">
+        Komik
+             </a>
+
+            <a href="tutorial.html">
+               Tutorial
+           </a>
+
+          <a href="article.html">
+           Article
+         </a>
+
+    <a href="event.html">
+        Event
+    </a>
+<a href="shop.html">
+
+        <i class="fa-solid fa-cart-shopping"></i>
+
+        <span>
+            Shop
+        </span>
+
+    </a>
+       </nav>
+
+
+        <!-- NOTIFICATION -->
+
+<div class="notification-wrapper">
+
+    <button class="notification-btn">
+
+        <i class="fa-solid fa-bell"></i>
+
+        <span class="notification-count"></span>
+
+    </button>
+
+    <div class="notification-box">
+
+        <div class="notification-list">
+
+            <!-- Diisi notification.js -->
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- SEARCH -->
+
+<button class="search-btn" aria-label="Search">
+
+    <i class="fa-solid fa-magnifying-glass"></i>
+
+</button>
+
+
+    </div>
+
+</header>
+
+
+
+
+
+
+<!-- ===========================
+MOBILE MENU
+=========================== -->
+
+
+<div class="mobile-menu">
+
+
+
+    <!-- HEADER -->
+
+    <div class="mobile-top">
+
+
+        <h2>
+
+            KOKYU<span>DRAW</span>
+
+        </h2>
+
+
+
+        <button class="close-menu" aria-label="Close Menu">
+
+
+            <i class="fa-solid fa-xmark"></i>
+
+
+        </button>
+
+
+    </div>
+
+
+
+
+
+
+<!-- ===========================
+ACCOUNT MENU
+=========================== -->
+
+
+<div id="authMenu">
+
+
+
+    <!-- BELUM LOGIN -->
+
+
+    <div class="guest-menu">
+
+
+        <a href="login.html">
+
+
+            <i class="fa-solid fa-right-to-bracket"></i>
+
+
+            <span>
+                Login
+            </span>
+
+
+        </a>
+
+
+
+        <a href="register.html">
+
+
+            <i class="fa-solid fa-user-plus"></i>
+
+
+            <span>
+                Register
+            </span>
+
+
+        </a>
+
+
+    </div>
+
+
+
+
+
+    <!-- SUDAH LOGIN -->
+
+
+    <div class="user-menu">
+
+
+
+        <!-- PROFILE CARD -->
+
+
+        <div class="user-card">
+
+
+
+            <img 
+                src="avatar-male.png"
+                class="user-avatar"
+            >
+
+
+
+            <div class="user-info">
+
+
+                <b>
+                    Username
+                </b>
+
+
+                <small>
+                    Creator
+                </small>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <a href="favorite.html">
+
+
+            <i class="fa-solid fa-heart"></i>
+
+
+            <span>
+                Favorite
+            </span>
+
+
+        </a>
+
+
+
+
+
+        <a href="history.html">
+
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+
+            <span>
+                History
+            </span>
+
+
+        </a>
+
+
+
+
+
+        <a href="profile.html">
+
+
+            <i class="fa-solid fa-user"></i>
+
+
+            <span>
+                My Profile
+            </span>
+
+
+        </a>
+
+
+
+
+
+        <a href="#">
+
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+
+            <span>
+                Logout
+            </span>
+
+
+        </a>
+
+
+
+    </div>
+
+
+</div>
+    <!-- MENU TITLE -->
+
+    <h3 class="menu-title">
+        MENU
+    </h3>
+
+
+
+
+
+
+    <!-- MAIN NAVIGATION -->
+
+
+    <nav class="mobile-nav">
+
+
+    <a href="home.html">
+
+        <i class="fa-solid fa-house"></i>
+
+        <span>
+            Home
+        </span>
+
+    </a>
+
+
+
+
+    <a href="news.html">
+
+        <i class="fa-solid fa-newspaper"></i>
+
+        <span>
+            News
+        </span>
+
+    </a>
+
+
+
+
+    <a href="komik.html">
+
+        <i class="fa-solid fa-book-open"></i>
+
+        <span>
+            Komik
+        </span>
+
+    </a>
+
+
+
+
+    <a href="tutorial.html">
+
+        <i class="fa-solid fa-pen"></i>
+
+        <span>
+            Tutorial
+        </span>
+
+    </a>
+
+
+
+
+    <a href="article.html">
+
+        <i class="fa-solid fa-file-lines"></i>
+
+        <span>
+            Article
+        </span>
+
+    </a>
+
+
+
+
+    <a href="event.html">
+
+        <i class="fa-solid fa-trophy"></i>
+
+        <span>
+            Event
+        </span>
+
+    </a>
+
+
+
+
+    <a href="shop.html">
+
+        <i class="fa-solid fa-cart-shopping"></i>
+
+        <span>
+            Shop
+        </span>
+
+    </a>
+
+
+</nav>
+
+
+
+
+
+    <hr>
+
+
+
+
+
+
+
+    <!-- OTHER TITLE -->
+
+
+    <h3 class="menu-title">
+
+        OTHER
+
+    </h3>
+
+
+
+
+
+
+
+    <!-- OTHER MENU -->
+
+
+
+    <a href="faq.html">
+
+
+        <i class="fa-solid fa-circle-question"></i>
+
+
+        <span>
+            FAQ
+        </span>
+
+
+    </a>
+
+
+
+
+
+
+    <a href="about.html">
+
+
+        <i class="fa-solid fa-circle-info"></i>
+
+
+        <span>
+            About
+        </span>
+
+
+    </a>
+
+
+
+
+
+
+    <a href="contact.html">
+
+
+        <i class="fa-solid fa-envelope"></i>
+
+
+        <span>
+            Contact
+        </span>
+
+
+    </a>
+
+
+
+
+
+
+
+    <!-- THEME BUTTON -->
+
+
+    <button class="theme-btn">
+
+
+        <i class="fa-solid fa-moon"></i>
+
+
+        <span>
+            Mode Malam
+        </span>
+
+
+    </button>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- ===========================
+OVERLAY
+=========================== -->
+
+
+<div class="overlay"></div>
+
+
+
+
+
+
+
+<!-- ===========================
+SEARCH MODAL
+=========================== -->
+
+
+<div class="search-modal">
+
+
+
+    <div class="search-box">
+
+
+
+        <button class="close-search">
+
+
+            <i class="fa-solid fa-xmark"></i>
+
+
+        </button>
+
+
+
+
+
+
+
+        <input
+
+            type="search"
+
+            id="searchInput"
+
+            placeholder="Search comics, creators..."
+
+        >
+
+
+
+
+
+
+
+        <div class="search-result">
+
+            <!-- hasil pencarian -->
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+</div>
+
+
+<!-- ===========================
+HERO
+=========================== -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <span class="hero-tag">
+
+           Sketching • SpeedDraw • Inking
+
+        </span>
+
+        <h1>
+
+            KOKYUDRAW
+
+        </h1>
+
+        <p>
+
+            Jelajahi Tutorial, Komik dan illustrasi orisinal karya kreator lokal,
+            dengan menunjukan kreativitasmu melalui event atau mulai perjalananmu sebagai komikus.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#gallery" class="btn">
+
+                Explore Komik
+
+            </a>
+
+            <a href="#shop" class="btn btn-outline">
+
+                My SHOP
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-scroll">
+
+        <span>Scroll Down</span>
+
+        <i class="fa-solid fa-angle-down"></i>
+
+    </div>
+
+</section>
+
+
+<!-- ===========================
+EVENT
+=========================== -->
+
+<section class="section" id="event">
+
+
+    <!-- EVENT HEADER -->
+
+    <div class="section-title">
+
+        <h2>
+            Community Event
+        </h2>
+
+        <p>
+            Ikuti challenge menggambar KokyuDraw dan tunjukkan karya terbaikmu.
+        </p>
+
+    </div>
+
+
+
+
+    <!-- FEATURE EVENT -->
+
+    <div class="event-card">
+
+
+        <div class="event-info">
+
+
+            <span class="badge">
+                🔥 Monthly Event
+            </span>
+
+
+
+            <h3>
+                Monthly Drawing Challenge
+            </h3>
+
+
+
+            <p>
+                Tantangan menggambar untuk para kreator.
+                Buat karya original sesuai tema dan berkesempatan mendapatkan hadiah.
+            </p>
+
+
+
+            <div class="event-detail">
+
+
+                <div class=".meta-item">
+
+                    <span>
+                        Tema
+                    </span>
+
+                    <strong>
+                        Character Ink Challenge
+                    </strong>
+
+                </div>
+
+
+
+
+                <div class=".meta-item">
+
+                    <span>
+                        Hadiah
+                    </span>
+
+                    <strong>
+                        Rp150.000
+                    </strong>
+
+                </div>
+
+
+
+
+                <div class=".meta-item">
+
+                    <span>
+                        Periode
+                    </span>
+
+                    <strong>
+                        Setiap tanggal 1
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+
+            <a href="#" class="btn">
+                Join Event
+            </a>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="event-image">
+
+
+            <img 
+                src="img/event.jpg" 
+                alt="KokyuDraw Event"
+            >
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- EVENT COMMENTS -->
+
+    <div class="event-comments">
+
+
+        <div class="section-title">
+
+            <h2>
+                Comments
+            </h2>
+
+            <p>
+                Diskusi dan komentar seputar event.
+            </p>
+
+        </div>
+
+
+
+
+        <div class="comment-input">
+
+
+            <textarea 
+                placeholder="Tulis komentar..."
+            ></textarea>
+
+
+            <button class="btn">
+                Send
+            </button>
+
+
+        </div>
+
+
+
+
+
+        <div class="comment-list">
+
+
+
+            <div class="comment-item">
+
+
+                <img 
+                    src="img/avatar.png"
+                    alt="User Avatar"
+                >
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- PREVIOUS WINNERS -->
+
+    <div class="winner-section">
+
+
+        <div class="section-title">
+
+
+            <h2>
+                Previous Winners
+            </h2>
+
+
+            <p>
+                Karya terbaik dari event sebelumnya.
+            </p>
+
+
+        </div>
+
+
+
+
+
+
+        <div class="winner-slider">
+
+
+
+            <div class="winner-card">
+
+
+                <span class="rank">
+                    🥇
+                </span>
+
+
+                <img 
+                    src="img/winner1.jpg"
+                    alt="Winner 1"
+                >
+
+
+                <h4>
+                    Nama Pemenang
+                </h4>
+
+
+                <p>
+                    @instagram
+                </p>
+
+
+            </div>
+
+
+
+
+
+
+            <div class="winner-card">
+
+
+                <span class="rank">
+                    🥈
+                </span>
+
+
+                <img 
+                    src="img/winner2.jpg"
+                    alt="Winner 2"
+                >
+
+
+                <h4>
+                    Nama Pemenang
+                </h4>
+
+
+                <p>
+                    @instagram
+                </p>
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="winner-card">
+
+
+                <span class="rank">
+                    🥉
+                </span>
+
+
+                <img 
+                    src="img/winner3.jpg"
+                    alt="Winner 3"
+                >
+
+
+                <h4>
+                    Nama Pemenang
+                </h4>
+
+
+                <p>
+                    @instagram
+                </p>
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+</section>
+
+
+
+<!-- =========================
+     RECOMMENDED COMICS
+========================= -->
+
+<section class="recommendation" id="recommendation">
+
+    <div class="section-title">
+
+        <h2>
+            Recommended Comics
+        </h2>
+
+        <p>
+            Baca komik pilihan terbaik dari KOKYUDRAW
+        </p>
+
+    </div>
+
+
+    <div class="comic-ranking" id="comicRanking">
+
+        <!-- Data komik dari Supabase masuk di sini -->
+
+    </div>
+
+
+</section>
+
+<!-- ===========================
+GALLERY
+=========================== -->
+
+<section class="section" id="gallery">
+
+    <div class="section-title">
+
+        <h2>Latest Artwork</h2>
+
+        <p>
+            Latest artworks from our Instagram.
+        </p>
+
+    </div>
+
+    <div class="gallery-grid">
+
+        <!-- Nanti diganti dengan Instagram Feed -->
+
+        <div class="gallery-item">
+            <img src="img/art1.jpg" alt="Artwork 1">
+        </div>
+
+        <div class="gallery-item">
+            <img src="img/art2.jpg" alt="Artwork 2">
+        </div>
+
+        <div class="gallery-item">
+            <img src="img/art3.jpg" alt="Artwork 3">
+        </div>
+
+        <div class="gallery-item">
+            <img src="img/art4.jpg" alt="Artwork 4">
+        </div>
+
+        <div class="gallery-item">
+            <img src="img/art5.jpg" alt="Artwork 5">
+        </div>
+
+        <div class="gallery-item">
+            <img src="img/art6.jpg" alt="Artwork 6">
+        </div>
+
+    </div>
+
+    <div class="section-button">
+
+        <a href="#" class="btn">
+
+            View Instagram
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+
+
+<!-- ===========================
+SHOP
+=========================== -->
+
+<section class="section" id="shop">
+
+    <div class="section-title">
+
+        <h2>Artwork Shop</h2>
+
+        <p>
+            Handmade illustrations and original artwork.
+        </p>
+
+    </div>
+
+    <div class="shop-grid">
+
+        <div class="product-card">
+
+            <img src="img/product1.jpg" alt="Artwork">
+
+            <h3>Original Ink Art</h3>
+
+            <p>
+                Handmade illustration with premium frame.
+            </p>
+
+            <span class="price">
+                Rp150.000
+            </span>
+
+            <a href="#" class="btn">
+                Buy Now
+            </a>
+
+        </div>
+
+
+
+        <div class="product-card">
+
+            <img src="img/product2.jpg" alt="Artwork">
+
+            <h3>Handmade Artwork</h3>
+
+            <p>
+                Perfect for room decoration or gifts.
+            </p>
+
+            <span class="price">
+                Rp100.000
+            </span>
+
+            <a href="#" class="btn">
+                Buy Now
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+<!-- ===========================
+ABOUT
+=========================== -->
+
+<section class="section" id="about">
+
+    <div class="section-title">
+
+        <h2>About KokyuDraw</h2>
+
+    </div>
+
+    <div class="about-content">
+
+        <div class="about-text">
+
+            <p>
+
+                KokyuDraw is an anime and manga art platform
+                where artists can discover new artwork,
+                join drawing events, and support original
+                handmade creations.
+
+            </p>
+
+            <p>
+
+                Our goal is to build a creative community
+                for artists who love drawing, sharing,
+                and learning together.
+
+            </p>
+
+        </div>
+
+        <div class="about-image">
+
+            <img src="img/about.jpg" alt="About">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+<!-- ===========================
+FOOTER
+=========================== -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <h2>
+
+            KOKYUDRAW
+
+        </h2>
+
+        <p>
+
+            Anime • Manga • Art Community
+
+        </p>
+
+        <div class="footer-social">
+
+            <a href="#">
+
+                <i class="fa-brands fa-instagram"></i>
+
+            </a>
+
+            <a href="#">
+
+                <i class="fa-brands fa-tiktok"></i>
+
+            </a>
+
+            <a href="#">
+
+                <i class="fa-brands fa-youtube"></i>
+
+            </a>
+
+        </div>
+
+        <p class="copyright">
+
+            © 2026 KokyuDraw. All Rights Reserved.
+
+        </p>
+
+    </div>
+
+</footer>
+<script src="supabase-komik.js"></script>
+<script src="loadjs/navbar.js"></script>
+
+<script src="loadjs/home.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+</body>
+</html>
