@@ -2,797 +2,247 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - KOKYUDRAW</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Profile - KOKYUDRAW</title>
-
-
-<link rel="stylesheet" href="loadcss/profile.css">
-<link rel="stylesheet" href="loadcss/navbar.css">
-<link rel="stylesheet" href="loadcss/sidebar.css">
-<link rel="stylesheet" href="loadcss/global.css">
-<link rel="stylesheet" href="loadcss/home.css">
+    <link rel="stylesheet" href="loadcss/profile.css">
+    <link rel="stylesheet" href="loadcss/navbar.css">
+    <link rel="stylesheet" href="loadcss/sidebar.css">
+    <link rel="stylesheet" href="loadcss/global.css">
+    <link rel="stylesheet" href="loadcss/home.css">
 
     <link rel="icon" type="image/png" href="img/favicon.png">
-
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
-
 
 <body>
 
-
-<!-- ===========================
-NAVBAR
-=========================== -->
-
 <header class="navbar">
-
     <div class="nav-container">
-
-
-        <!-- MENU BUTTON -->
-
         <button class="menu-btn" aria-label="Open Menu">
-
             <i class="fa-solid fa-bars"></i>
-
         </button>
-
-
-
-        <!-- LOGO -->
 
         <a href="home.html" class="logo">
-
             KOKYU<span>DRAW</span>
-
         </a>
-
-
-
-        <!-- DESKTOP NAVIGATION -->
 
         <nav class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="news.html">News</a>
+            <a href="comic.html">Komik</a>
+            <a href="tutorial.html">Tutorial</a>
+            <a href="article.html">Article</a>
+            <a href="event.html">Event</a>
+            <a href="shop.html">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Shop</span>
+            </a>
+        </nav>
 
-         <a href="index.html" class="active">
-        Home
-         </a>
-
-         <a href="news.html">
-        News
-         </a>
-
-           <a href="comic.html">
-        Komik
-             </a>
-
-            <a href="tutorial.html">
-               Tutorial
-           </a>
-
-          <a href="article.html">
-           Article
-         </a>
-
-    <a href="event.html">
-        Event
-    </a>
-<a href="shop.html">
-
-        <i class="fa-solid fa-cart-shopping"></i>
-
-        <span>
-            Shop
-        </span>
-
-    </a>
-       </nav>
-
-
-        <!-- NOTIFICATION -->
-
-<div class="notification-wrapper">
-
-    <button class="notification-btn">
-
-        <i class="fa-solid fa-bell"></i>
-
-        <span class="notification-count"></span>
-
-    </button>
-
-    <div class="notification-box">
-
-        <div class="notification-list">
-
-            <!-- Diisi notification.js -->
-
+        <div class="notification-wrapper">
+            <button class="notification-btn">
+                <i class="fa-solid fa-bell"></i>
+                <span class="notification-count"></span>
+            </button>
+            <div class="notification-box">
+                <div class="notification-list">
+                    </div>
+            </div>
         </div>
 
+        <button class="search-btn" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
     </div>
-
-</div>
-
-<!-- SEARCH -->
-
-<button class="search-btn" aria-label="Search">
-
-    <i class="fa-solid fa-magnifying-glass"></i>
-
-</button>
-
-
-    </div>
-
 </header>
 
-
-
-
-
-
-<!-- ===========================
-MOBILE MENU
-=========================== -->
-
-
 <div class="mobile-menu">
-
-
-
-    <!-- HEADER -->
-
     <div class="mobile-top">
-
-
-        <h2>
-
-            KOKYU<span>DRAW</span>
-
-        </h2>
-
-
-
+        <h2>KOKYU<span>DRAW</span></h2>
         <button class="close-menu" aria-label="Close Menu">
-
-
             <i class="fa-solid fa-xmark"></i>
-
-
         </button>
-
-
     </div>
 
-
-
-
-
-
-<!-- ===========================
-ACCOUNT MENU
-=========================== -->
-
-
-<div id="authMenu">
-
-
-
-    <!-- BELUM LOGIN -->
-
-
-    <div class="guest-menu">
-
-
-        <a href="login.html">
-
-
-            <i class="fa-solid fa-right-to-bracket"></i>
-
-
-            <span>
-                Login
-            </span>
-
-
-        </a>
-
-
-
-        <a href="register.html">
-
-
-            <i class="fa-solid fa-user-plus"></i>
-
-
-            <span>
-                Register
-            </span>
-
-
-        </a>
-
-
-    </div>
-
-
-
-
-
-    <!-- SUDAH LOGIN -->
-
-
-    <div class="user-menu">
-
-
-
-        <!-- PROFILE CARD -->
-
-
-        <div class="user-card">
-
-
-
-            <img 
-                src="avatar-male.png"
-                class="user-avatar"
-            >
-
-
-
-            <div class="user-info">
-
-
-                <b>
-                    Username
-                </b>
-
-
-                <small>
-                    Creator
-                </small>
-
-
-            </div>
-
-
+    <div id="authMenu">
+        <div class="guest-menu">
+            <a href="login.html">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span>Login</span>
+            </a>
+            <a href="register.html">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Register</span>
+            </a>
         </div>
 
+        <div class="user-menu">
+            <div class="user-card">
+                <img src="avatar-male.png" class="user-avatar">
+                <div class="user-info">
+                    <b>Username</b>
+                    <small>Creator</small>
+                </div>
+            </div>
 
-
-
-
-        <a href="favorite.html">
-
-
-            <i class="fa-solid fa-heart"></i>
-
-
-            <span>
-                Favorite
-            </span>
-
-
-        </a>
-
-
-
-
-
-        <a href="history.html">
-
-
-            <i class="fa-solid fa-clock-rotate-left"></i>
-
-
-            <span>
-                History
-            </span>
-
-
-        </a>
-
-
-
-
-
-        <a href="profile.html">
-
-
-            <i class="fa-solid fa-user"></i>
-
-
-            <span>
-                My Profile
-            </span>
-
-
-        </a>
-
-
-
-
-
-        <a href="#">
-
-
-            <i class="fa-solid fa-right-from-bracket"></i>
-
-
-            <span>
-                Logout
-            </span>
-
-
-        </a>
-
-
-
+            <a href="favorite.html">
+                <i class="fa-solid fa-heart"></i>
+                <span>Favorite</span>
+            </a>
+            <a href="history.html">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>History</span>
+            </a>
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>My Profile</span>
+            </a>
+            <a href="#">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+        </div>
     </div>
 
-
-</div>
-    <!-- MENU TITLE -->
-
-    <h3 class="menu-title">
-        MENU
-    </h3>
-
-
-
-
-
-
-    <!-- MAIN NAVIGATION -->
-
+    <h3 class="menu-title">MENU</h3>
 
     <nav class="mobile-nav">
-
-
-    <a href="home.html">
-
-        <i class="fa-solid fa-house"></i>
-
-        <span>
-            Home
-        </span>
-
-    </a>
-
-
-
-
-    <a href="news.html">
-
-        <i class="fa-solid fa-newspaper"></i>
-
-        <span>
-            News
-        </span>
-
-    </a>
-
-
-
-
-    <a href="komik.html">
-
-        <i class="fa-solid fa-book-open"></i>
-
-        <span>
-            Komik
-        </span>
-
-    </a>
-
-
-
-
-    <a href="tutorial.html">
-
-        <i class="fa-solid fa-pen"></i>
-
-        <span>
-            Tutorial
-        </span>
-
-    </a>
-
-
-
-
-    <a href="article.html">
-
-        <i class="fa-solid fa-file-lines"></i>
-
-        <span>
-            Article
-        </span>
-
-    </a>
-
-
-
-
-    <a href="event.html">
-
-        <i class="fa-solid fa-trophy"></i>
-
-        <span>
-            Event
-        </span>
-
-    </a>
-
-
-
-
-    <a href="shop.html">
-
-        <i class="fa-solid fa-cart-shopping"></i>
-
-        <span>
-            Shop
-        </span>
-
-    </a>
-
-
-</nav>
-
-
-
-
+        <a href="home.html">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+        <a href="news.html">
+            <i class="fa-solid fa-newspaper"></i>
+            <span>News</span>
+        </a>
+        <a href="komik.html">
+            <i class="fa-solid fa-book-open"></i>
+            <span>Komik</span>
+        </a>
+        <a href="tutorial.html">
+            <i class="fa-solid fa-pen"></i>
+            <span>Tutorial</span>
+        </a>
+        <a href="article.html">
+            <i class="fa-solid fa-file-lines"></i>
+            <span>Article</span>
+        </a>
+        <a href="event.html">
+            <i class="fa-solid fa-trophy"></i>
+            <span>Event</span>
+        </a>
+        <a href="shop.html">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Shop</span>
+        </a>
+    </nav>
 
     <hr>
 
-
-
-
-
-
-
-    <!-- OTHER TITLE -->
-
-
-    <h3 class="menu-title">
-
-        OTHER
-
-    </h3>
-
-
-
-
-
-
-
-    <!-- OTHER MENU -->
-
-
+    <h3 class="menu-title">OTHER</h3>
 
     <a href="faq.html">
-
-
         <i class="fa-solid fa-circle-question"></i>
-
-
-        <span>
-            FAQ
-        </span>
-
-
+        <span>FAQ</span>
     </a>
-
-
-
-
-
-
     <a href="about.html">
-
-
         <i class="fa-solid fa-circle-info"></i>
-
-
-        <span>
-            About
-        </span>
-
-
+        <span>About</span>
     </a>
-
-
-
-
-
-
     <a href="contact.html">
-
-
         <i class="fa-solid fa-envelope"></i>
-
-
-        <span>
-            Contact
-        </span>
-
-
+        <span>Contact</span>
     </a>
-
-
-
-
-
-
-
-    <!-- THEME BUTTON -->
-
 
     <button class="theme-btn">
-
-
         <i class="fa-solid fa-moon"></i>
-
-
-        <span>
-            Mode Malam
-        </span>
-
-
+        <span>Mode Malam</span>
     </button>
-
-
-
-
 </div>
-
-
-
-
-
-
-
-<!-- ===========================
-OVERLAY
-=========================== -->
-
 
 <div class="overlay"></div>
 
-
-
-
-
-
-
-<!-- ===========================
-SEARCH MODAL
-=========================== -->
-
-
 <div class="search-modal">
-
-
-
     <div class="search-box">
-
-
-
         <button class="close-search">
-
-
             <i class="fa-solid fa-xmark"></i>
-
-
         </button>
-
-
-
-
-
-
-
-        <input
-
-            type="search"
-
-            id="searchInput"
-
-            placeholder="Search comics, creators..."
-
-        >
-
-
-
-
-
-
-
+        <input type="search" id="searchInput" placeholder="Search comics, creators...">
         <div class="search-result">
-
-            <!-- hasil pencarian -->
-
-        </div>
-
-
-
-
-
+            </div>
     </div>
-
-
 </div>
 
 <main class="profile-page">
-
-    <!-- ===========================
-         PROFILE HEADER
-    ============================ -->
     <section class="profile-header">
-
         <div id="profileBanner" class="profile-banner"></div>
-
         <div class="profile-info">
-
-            <img
-                id="profileAvatar"
-                src="img/default-avatar.png"
-                alt="Profile Avatar"
-                class="profile-avatar"
-            >
-
+            <img id="profileAvatar" src="img/default-avatar.png" alt="Profile Avatar" class="profile-avatar">
             <div class="profile-text">
-
                 <h1 id="username">Loading...</h1>
-
-                <p id="userTag" class="profile-tag">
-                    @username
-                </p>
-
-                <span id="roleBadge" class="role-badge">
-                    User
-                </span>
-
-                <p id="profileBio" class="profile-bio">
-                    No bio yet.
-                </p>
-
+                <p id="userTag" class="profile-tag">@username</p>
+                <span id="roleBadge" class="role-badge">User</span>
+                <p id="profileBio" class="profile-bio">No bio yet.</p>
                 <button id="editProfileBtn" class="edit-profile-btn">
-                    <i class="fa-solid fa-pen"></i>
-                    Edit Profile
+                    <i class="fa-solid fa-pen"></i> Edit Profile
                 </button>
-
             </div>
-
         </div>
-
     </section>
-
-
 
     <section class="profile-stats">
+        <div class="stat-card">
+            <h2 id="likeCount">0</h2>
+            <p>❤️ Likes</p>
+        </div>
+        <div class="stat-card">
+            <h2 id="favoriteCount">0</h2>
+            <p>⭐ Favorite</p>
+        </div>
+        <div class="stat-card">
+            <h2 id="viewCount">0</h2>
+            <p>👁 Views</p>
+        </div>
+    </section>
 
-    <div class="stat-card">
-
-        <h2 id="likeCount">
-            0
-        </h2>
-
-        <p>
-            ❤️ Likes
-        </p>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <h2 id="favoriteCount">
-            0
-        </h2>
-
-        <p>
-            ⭐ Favorite
-        </p>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <h2 id="viewCount">
-            0
-        </h2>
-
-        <p>
-            👁 Views
-        </p>
-
-    </div>
-
-</section>
-
-
-
-    <!-- ===========================
-         TAB MENU
-    ============================ -->
     <section class="profile-tabs">
-
-        <button class="tab-btn active" data-tab="favorite">
-            ❤️ Favorite
-        </button>
-
-        <button class="tab-btn" data-tab="history">
-            🕒 History
-        </button>
-
-        <button class="tab-btn" data-tab="comic">
-            📚 Comic
-        </button>
-
+        <button class="tab-btn active" data-tab="favorite">❤️ Favorite</button>
+        <button class="tab-btn" data-tab="history">🕒 History</button>
+        <button class="tab-btn" data-tab="comic">📚 Comic</button>
     </section>
 
-
-
-    <!-- ===========================
-         UPLOAD SECTION
-         (Hidden jika bukan profil sendiri)
-    ============================ -->
     <section id="uploadSection" class="upload-section">
-
         <button id="uploadArtworkBtn" class="upload-btn">
-            <i class="fa-solid fa-image"></i>
-            Upload Artwork
+            <i class="fa-solid fa-image"></i> Upload Artwork
         </button>
-
         <button id="uploadComicBtn" class="upload-btn">
-            <i class="fa-solid fa-book"></i>
-            Upload Comic
+            <i class="fa-solid fa-book"></i> Upload Comic
         </button>
-
     </section>
 
-
-
-    <!-- ===========================
-         TAB CONTENT
-    ============================ -->
     <section id="tabContent" class="profile-content">
+        </section>
 
-        <!-- Diisi profile.js -->
-
+    <section class="logout-section" style="margin-top: 40px; text-align: center;">
+        <button id="logoutBtn" class="logout-btn" style="padding: 12px 24px; background-color: #ff4d4d; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: background 0.3s;">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout dari Akun</span>
+        </button>
     </section>
-
 </main>
 
-    
-
+<footer>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script src="loadjs/navbar.js"></script>
-
 <script src="loadjs/profile.js"></script>
 <script src="loadjs/home.js"></script>
 
 </body>
-
 </html>
