@@ -5,71 +5,163 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="icon" type="image/png" href="img/favicon.png">
 
     <title>Register - KOKYUDRAW</title>
 
-    <link rel="stylesheet" href="relog/stylerelog.css">
+    <link rel="stylesheet" href="loadcss/relog.css">
 
 </head>
 
-
 <body>
-
 
 <div class="auth-container">
 
-
     <div class="auth-box">
-
 
         <h2>Create Account</h2>
 
-
-        <input 
-type="text"
-id="username"
-placeholder="Username"
-autocomplete="username">
-
-
-        <input 
-type="email"
-id="registerEmail"
-placeholder="Email"
-autocomplete="email">
-
-
-        <input 
-type="password"
-id="registerPassword"
-placeholder="Password"
-autocomplete="new-password">
-
-
-        <button id="registerBtn">
-            Daftar
-        </button>
-
-
-        <p>
-            Sudah punya akun?
-            <a href="login.html">
-                Login
-            </a>
+        <p class="auth-subtitle">
+            Join KOKYUDRAW and start sharing your artwork.
         </p>
 
+        <!-- Username -->
+        <div class="input-group">
 
-    </div>
+            <input
+                type="text"
+                id="username"
+                placeholder="Username"
+                autocomplete="username"
+                maxlength="20">
 
+            <small class="error-text" id="usernameError"></small>
+
+        </div>
+
+        <!-- Email -->
+        <div class="input-group">
+
+            <input
+                type="email"
+                id="registerEmail"
+                placeholder="Email Address"
+                autocomplete="email">
+
+            <small class="error-text" id="emailError"></small>
+
+        </div>
+
+        <!-- Password -->
+        <div class="input-group">
+
+    <input
+        type="password"
+        id="registerPassword"
+        placeholder="Password"
+        autocomplete="new-password">
+
+    <button
+        type="button"
+        class="toggle-password"
+        data-target="registerPassword"
+        aria-label="Show Password">
+
+        <i class="fa-regular fa-eye"></i>
+
+    </button>
+
+    <small
+        class="error-text"
+        id="passwordError">
+    </small>
 
 </div>
 
+        <!-- Confirm Password -->
+        <div class="input-group">
 
+    <input
+        type="password"
+        id="confirmPassword"
+        placeholder="Confirm Password"
+        autocomplete="new-password">
 
+    <button
+        type="button"
+        class="toggle-password"
+        data-target="confirmPassword"
+        aria-label="Show Password">
+
+        <i class="fa-regular fa-eye"></i>
+
+    </button>
+
+    <small
+        class="error-text"
+        id="confirmPasswordError">
+    </small>
+
+</div>
+
+        <!-- Password Strength -->
+        <div class="password-strength">
+
+            <div class="strength-bar">
+                <span id="strengthFill"></span>
+            </div>
+
+            <small id="strengthText">
+                Password Strength
+            </small>
+
+        </div>
+
+        <!-- Terms -->
+        <label class="terms">
+
+            <input
+                type="checkbox"
+                id="agreeTerms">
+
+            <span>
+                I agree to the
+                <a href="terms.html">Terms of Service</a>
+                &
+                <a href="privacy.html">Privacy Policy</a>
+            </span>
+
+        </label>
+
+        <small class="error-text" id="termsError"></small>
+
+        <!-- Register Button -->
+        <button
+            id="registerBtn"
+            type="button">
+
+            Create Account
+
+        </button>
+
+        <p class="login-link">
+
+            Already have an account?
+
+            <a href="login.html">
+                Login
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="relog/authrelog.js"></script>
+<script src="loadjs/relog.js"></script>
 
 </body>
-
 </html>
