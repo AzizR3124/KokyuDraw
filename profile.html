@@ -9,8 +9,11 @@
 <title>Profile - KOKYUDRAW</title>
 
 
-<link rel="stylesheet" href="relog/profile.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="loadcss/profile.css">
+<link rel="stylesheet" href="loadcss/navbar.css">
+<link rel="stylesheet" href="loadcss/sidebar.css">
+<link rel="stylesheet" href="loadcss/global.css">
+<link rel="stylesheet" href="loadcss/home.css">
 
     <link rel="icon" type="image/png" href="img/favicon.png">
 
@@ -33,53 +36,106 @@
 <body>
 
 
+<!-- ===========================
+NAVBAR
+=========================== -->
+
 <header class="navbar">
 
     <div class="nav-container">
 
-        <button class="menu-btn">
+
+        <!-- MENU BUTTON -->
+
+        <button class="menu-btn" aria-label="Open Menu">
+
             <i class="fa-solid fa-bars"></i>
+
         </button>
 
-        <!-- Desktop Search -->
-        <div class="desktop-search">
 
-            <i class="fa-solid fa-magnifying-glass"></i>
 
-            <input
-                type="search"
-                id="searchInput"
-                placeholder="Search..."
-            >
+        <!-- LOGO -->
 
-        </div>
+        <a href="home.html" class="logo">
 
-        <a href="#" class="logo">
             KOKYU<span>DRAW</span>
+
         </a>
+
+
+
+        <!-- DESKTOP NAVIGATION -->
 
         <nav class="nav-links">
 
-            <a href="#home">Home</a>
+         <a href="index.html" class="active">
+        Home
+         </a>
 
-            <a href="#event">Event</a>
+         <a href="news.html">
+        News
+         </a>
 
-            <a href="#gallery">Gallery</a>
+           <a href="comic.html">
+        Komik
+             </a>
 
-            <a href="#shop">Shop</a>
+            <a href="tutorial.html">
+               Tutorial
+           </a>
 
-            <a href="#about">About</a>
+          <a href="article.html">
+           Article
+         </a>
 
-        </nav>
+    <a href="event.html">
+        Event
+    </a>
+<a href="shop.html">
 
-        <!-- LOGIN / PROFILE -->
-        <div id="authMenu"></div>
+        <i class="fa-solid fa-cart-shopping"></i>
 
-        <button class="theme-btn">
+        <span>
+            Shop
+        </span>
 
-            <i class="fa-solid fa-moon"></i>
+    </a>
+       </nav>
 
-        </button>
+
+        <!-- NOTIFICATION -->
+
+<div class="notification-wrapper">
+
+    <button class="notification-btn">
+
+        <i class="fa-solid fa-bell"></i>
+
+        <span class="notification-count"></span>
+
+    </button>
+
+    <div class="notification-box">
+
+        <div class="notification-list">
+
+            <!-- Diisi notification.js -->
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- SEARCH -->
+
+<button class="search-btn" aria-label="Search">
+
+    <i class="fa-solid fa-magnifying-glass"></i>
+
+</button>
+
 
     </div>
 
@@ -89,50 +145,433 @@
 
 
 
+
 <!-- ===========================
 MOBILE MENU
 =========================== -->
 
+
 <div class="mobile-menu">
+
+
+
+    <!-- HEADER -->
 
     <div class="mobile-top">
 
-        <h2>KOKYUDRAW</h2>
 
-        <button class="close-menu">
+        <h2>
+
+            KOKYU<span>DRAW</span>
+
+        </h2>
+
+
+
+        <button class="close-menu" aria-label="Close Menu">
+
 
             <i class="fa-solid fa-xmark"></i>
 
+
         </button>
+
 
     </div>
 
 
-    <a href="#home">Home</a>
-
-    <a href="#event">Event</a>
-
-    <a href="#gallery">Gallery</a>
-
-    <a href="#shop">Shop</a>
-
-    <a href="#about">About</a>
 
 
-    <div class="mobile-search">
 
-        <i class="fa-solid fa-magnifying-glass"></i>
 
-        <input 
-            type="search"
-            id="mobileSearch"
-            placeholder="Search..."
-        >
+<!-- ===========================
+ACCOUNT MENU
+=========================== -->
+
+
+<div id="authMenu">
+
+
+
+    <!-- BELUM LOGIN -->
+
+
+    <div class="guest-menu">
+
+
+        <a href="login.html">
+
+
+            <i class="fa-solid fa-right-to-bracket"></i>
+
+
+            <span>
+                Login
+            </span>
+
+
+        </a>
+
+
+
+        <a href="register.html">
+
+
+            <i class="fa-solid fa-user-plus"></i>
+
+
+            <span>
+                Register
+            </span>
+
+
+        </a>
+
+
+    </div>
+
+
+
+
+
+    <!-- SUDAH LOGIN -->
+
+
+    <div class="user-menu">
+
+
+
+        <!-- PROFILE CARD -->
+
+
+        <div class="user-card">
+
+
+
+            <img 
+                src="avatar-male.png"
+                class="user-avatar"
+            >
+
+
+
+            <div class="user-info">
+
+
+                <b>
+                    Username
+                </b>
+
+
+                <small>
+                    Creator
+                </small>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <a href="favorite.html">
+
+
+            <i class="fa-solid fa-heart"></i>
+
+
+            <span>
+                Favorite
+            </span>
+
+
+        </a>
+
+
+
+
+
+        <a href="history.html">
+
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+
+            <span>
+                History
+            </span>
+
+
+        </a>
+
+
+
+
+
+        <a href="profile.html">
+
+
+            <i class="fa-solid fa-user"></i>
+
+
+            <span>
+                My Profile
+            </span>
+
+
+        </a>
+
+
+
+
+
+        <a href="#">
+
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+
+            <span>
+                Logout
+            </span>
+
+
+        </a>
+
+
 
     </div>
 
 
 </div>
+    <!-- MENU TITLE -->
+
+    <h3 class="menu-title">
+        MENU
+    </h3>
+
+
+
+
+
+
+    <!-- MAIN NAVIGATION -->
+
+
+    <nav class="mobile-nav">
+
+
+    <a href="home.html">
+
+        <i class="fa-solid fa-house"></i>
+
+        <span>
+            Home
+        </span>
+
+    </a>
+
+
+
+
+    <a href="news.html">
+
+        <i class="fa-solid fa-newspaper"></i>
+
+        <span>
+            News
+        </span>
+
+    </a>
+
+
+
+
+    <a href="komik.html">
+
+        <i class="fa-solid fa-book-open"></i>
+
+        <span>
+            Komik
+        </span>
+
+    </a>
+
+
+
+
+    <a href="tutorial.html">
+
+        <i class="fa-solid fa-pen"></i>
+
+        <span>
+            Tutorial
+        </span>
+
+    </a>
+
+
+
+
+    <a href="article.html">
+
+        <i class="fa-solid fa-file-lines"></i>
+
+        <span>
+            Article
+        </span>
+
+    </a>
+
+
+
+
+    <a href="event.html">
+
+        <i class="fa-solid fa-trophy"></i>
+
+        <span>
+            Event
+        </span>
+
+    </a>
+
+
+
+
+    <a href="shop.html">
+
+        <i class="fa-solid fa-cart-shopping"></i>
+
+        <span>
+            Shop
+        </span>
+
+    </a>
+
+
+</nav>
+
+
+
+
+
+    <hr>
+
+
+
+
+
+
+
+    <!-- OTHER TITLE -->
+
+
+    <h3 class="menu-title">
+
+        OTHER
+
+    </h3>
+
+
+
+
+
+
+
+    <!-- OTHER MENU -->
+
+
+
+    <a href="faq.html">
+
+
+        <i class="fa-solid fa-circle-question"></i>
+
+
+        <span>
+            FAQ
+        </span>
+
+
+    </a>
+
+
+
+
+
+
+    <a href="about.html">
+
+
+        <i class="fa-solid fa-circle-info"></i>
+
+
+        <span>
+            About
+        </span>
+
+
+    </a>
+
+
+
+
+
+
+    <a href="contact.html">
+
+
+        <i class="fa-solid fa-envelope"></i>
+
+
+        <span>
+            Contact
+        </span>
+
+
+    </a>
+
+
+
+
+
+
+
+    <!-- THEME BUTTON -->
+
+
+    <button class="theme-btn">
+
+
+        <i class="fa-solid fa-moon"></i>
+
+
+        <span>
+            Mode Malam
+        </span>
+
+
+    </button>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- ===========================
+OVERLAY
+=========================== -->
+
 
 <div class="overlay"></div>
 
@@ -140,115 +579,219 @@ MOBILE MENU
 
 
 
-<main class="profile-page">
 
 
-<section class="profile-card">
+<!-- ===========================
+SEARCH MODAL
+=========================== -->
 
 
-<img 
-src="img/default-avatar.png"
-class="profile-img"
->
-
-
-<h2 id="username">
-Username
-</h2>
-
-
-<p id="email">
-Email
-</p>
-
-
-<button id="logoutBtn">
-Logout
-</button>
-
-
-</section>
+<div class="search-modal">
 
 
 
-<section class="recommendation">
+    <div class="search-box">
 
 
-<h2>
-Recommended Comics
-</h2>
+
+        <button class="close-search">
 
 
-<div class="comic-list">
-
-<!-- nanti isi komik -->
-
-</div>
+            <i class="fa-solid fa-xmark"></i>
 
 
-</section>
-
-
-</main>
+        </button>
 
 
 
 
 
-<footer>
 
-    <div class="footer-content">
 
-        <h2>
+        <input
 
-            KOKYUDRAW
+            type="search"
 
-        </h2>
+            id="searchInput"
 
-        <p>
+            placeholder="Search comics, creators..."
 
-            Anime • Manga • Art Community
+        >
 
-        </p>
 
-        <div class="footer-social">
 
-            <a href="#">
 
-                <i class="fa-brands fa-instagram"></i>
 
-            </a>
 
-            <a href="#">
 
-                <i class="fa-brands fa-tiktok"></i>
+        <div class="search-result">
 
-            </a>
-
-            <a href="#">
-
-                <i class="fa-brands fa-youtube"></i>
-
-            </a>
+            <!-- hasil pencarian -->
 
         </div>
 
-        <p class="copyright">
 
-            © 2026 KokyuDraw. All Rights Reserved.
 
+
+
+    </div>
+
+
+</div>
+
+<main class="profile-page">
+
+    <!-- ===========================
+         PROFILE HEADER
+    ============================ -->
+    <section class="profile-header">
+
+        <div id="profileBanner" class="profile-banner"></div>
+
+        <div class="profile-info">
+
+            <img
+                id="profileAvatar"
+                src="img/default-avatar.png"
+                alt="Profile Avatar"
+                class="profile-avatar"
+            >
+
+            <div class="profile-text">
+
+                <h1 id="username">Loading...</h1>
+
+                <p id="userTag" class="profile-tag">
+                    @username
+                </p>
+
+                <span id="roleBadge" class="role-badge">
+                    User
+                </span>
+
+                <p id="profileBio" class="profile-bio">
+                    No bio yet.
+                </p>
+
+                <button id="editProfileBtn" class="edit-profile-btn">
+                    <i class="fa-solid fa-pen"></i>
+                    Edit Profile
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="profile-stats">
+
+    <div class="stat-card">
+
+        <h2 id="likeCount">
+            0
+        </h2>
+
+        <p>
+            ❤️ Likes
         </p>
 
     </div>
+
+
+    <div class="stat-card">
+
+        <h2 id="favoriteCount">
+            0
+        </h2>
+
+        <p>
+            ⭐ Favorite
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <h2 id="viewCount">
+            0
+        </h2>
+
+        <p>
+            👁 Views
+        </p>
+
+    </div>
+
+</section>
+
+
+
+    <!-- ===========================
+         TAB MENU
+    ============================ -->
+    <section class="profile-tabs">
+
+        <button class="tab-btn active" data-tab="favorite">
+            ❤️ Favorite
+        </button>
+
+        <button class="tab-btn" data-tab="history">
+            🕒 History
+        </button>
+
+        <button class="tab-btn" data-tab="comic">
+            📚 Comic
+        </button>
+
+    </section>
+
+
+
+    <!-- ===========================
+         UPLOAD SECTION
+         (Hidden jika bukan profil sendiri)
+    ============================ -->
+    <section id="uploadSection" class="upload-section">
+
+        <button id="uploadArtworkBtn" class="upload-btn">
+            <i class="fa-solid fa-image"></i>
+            Upload Artwork
+        </button>
+
+        <button id="uploadComicBtn" class="upload-btn">
+            <i class="fa-solid fa-book"></i>
+            Upload Comic
+        </button>
+
+    </section>
+
+
+
+    <!-- ===========================
+         TAB CONTENT
+    ============================ -->
+    <section id="tabContent" class="profile-content">
+
+        <!-- Diisi profile.js -->
+
+    </section>
+
+</main>
+
+    
 
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="relog/navbar.js"></script>
+<script src="loadjs/navbar.js"></script>
 
-<script src="relog/profile.js"></script>
-<script src="script.js"></script>
+<script src="loadjs/profile.js"></script>
+<script src="loadjs/home.js"></script>
 
 </body>
 
