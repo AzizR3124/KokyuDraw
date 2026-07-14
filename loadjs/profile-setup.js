@@ -1,12 +1,19 @@
+// ==========================================================
+// KOKYUDRAW PROFILE SETUP
+// ==========================================================
+
+
 // =========================
-// SUPABASE
+// SUPABASE CONNECTION
 // =========================
 
 const supabaseUrl =
 "https://dalxlbgqiczesidujcuf.supabase.co";
 
+
 const supabaseKey =
 "sb_publishable_S74FfRR4HXhb2P2dkoZY1A_FitlYnRW";
+
 
 const supabaseClient =
 window.supabase.createClient(
@@ -17,7 +24,7 @@ window.supabase.createClient(
 
 
 // =========================
-// USER
+// GLOBAL USER
 // =========================
 
 let currentUser = null;
@@ -28,15 +35,19 @@ let currentUser = null;
 // CHECK USER
 // =========================
 
-async function init(){
+async function checkUser(){
 
-    const { data, error } =
+
+    const { data } =
     await supabaseClient.auth.getUser();
 
 
-    if(error || !data.user){
 
-        window.location.href = "login.html";
+    if(!data.user){
+
+        window.location.href =
+        "login.html";
+
         return;
 
     }
@@ -45,17 +56,65 @@ async function init(){
     currentUser = data.user;
 
 
-    console.log(
-        "LOGIN USER:",
-        currentUser.id
-    );
-
+    loadProfile();
 
 }
 
 
 
-init();
+checkUser();
+
+
+
+
+// =========================
+// LOAD PROFILE DATA
+// =========================
+
+async function loadProfile(){
+
+
+    const { data, error } =
+    await supabaseClient
+    .from("users")
+    .select("*")
+    .eq(
+        "id",
+        currentUser.id
+    )
+    .single();
+
+
+
+    if(error){
+
+        console.log(error);
+        return;
+
+    }
+
+
+
+    if(data){
+
+
+        document.getElementById(
+            "profileUsername"
+        ).value =
+        data.username || "";
+
+
+
+        document.getElementById(
+            "profileBio"
+        ).value =
+        data.bio || "";
+
+
+    }
+
+
+}
 
 
 
@@ -65,18 +124,26 @@ init();
 // =========================
 
 const avatarInput =
-document.getElementById("avatarInput");
+document.getElementById(
+    "avatarInput"
+);
+
 
 
 const avatarPreview =
-document.getElementById("avatarPreview");
+document.getElementById(
+    "avatarPreview"
+);
 
 
-if(avatarInput && avatarPreview){
+
+if(avatarInput){
+
 
     avatarInput.addEventListener(
         "change",
-        ()=>{
+        function(){
+
 
             const file =
             avatarInput.files[0];
@@ -84,25 +151,32 @@ if(avatarInput && avatarPreview){
 
             if(file){
 
+
                 const reader =
                 new FileReader();
 
 
+
                 reader.onload =
-                e=>{
+                function(e){
+
 
                     avatarPreview.src =
                     e.target.result;
+
 
                 };
 
 
                 reader.readAsDataURL(file);
 
+
             }
+
 
         }
     );
+
 
 }
 
@@ -117,14 +191,15 @@ async function saveProfile(){
 
 
     console.log(
-        "SAVE BUTTON CLICK"
+        "SAVE PROFILE CLICK"
     );
+
 
 
     if(!currentUser){
 
         alert(
-            "User belum siap"
+            "User belum login"
         );
 
         return;
@@ -136,40 +211,54 @@ async function saveProfile(){
     const username =
     document.getElementById(
         "profileUsername"
-    ).value;
+    ).value.trim();
 
 
 
     const bio =
     document.getElementById(
         "profileBio"
-    ).value;
+    ).value.trim();
 
 
 
-    const { error } =
-    await supabaseClient
+    if(username === ""){
+
+
+        alert(
+            "Username wajib diisi"
+        );
+
+
+        return;
+
+    }
+
+
+
+
     .from("users")
-    .upsert({
-
-        id: currentUser.id,
-        username: username,
-        bio: bio,
-        role: "user"
-
-    });
+.update({
+    username: username,
+    bio: bio
+})
+.eq("id", currentUser.id);
 
 
 
     if(error){
 
+
         console.log(error);
+
 
         alert(
             error.message
         );
 
+
         return;
+
 
     }
 
@@ -178,6 +267,7 @@ async function saveProfile(){
     alert(
         "Profile berhasil disimpan"
     );
+
 
 
     window.location.href =
@@ -190,35 +280,23 @@ async function saveProfile(){
 
 
 // =========================
-// BUTTON
+// SAVE BUTTON
 // =========================
 
-window.addEventListener(
-"DOMContentLoaded",
-()=>{
+const saveProfileBtn =
+document.getElementById(
+    "saveProfileBtn"
+);
 
 
-    const btn =
-    document.getElementById(
-        "saveProfileBtn"
+
+if(saveProfileBtn){
+
+
+    saveProfileBtn.addEventListener(
+        "click",
+        saveProfile
     );
 
 
-    console.log(
-        "BUTTON:",
-        btn
-    );
-
-
-
-    if(btn){
-
-        btn.addEventListener(
-            "click",
-            saveProfile
-        );
-
-    }
-
-
-});
+}
