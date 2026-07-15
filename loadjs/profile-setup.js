@@ -42,45 +42,58 @@ async function checkUser(){
 document.addEventListener("DOMContentLoaded", checkUser);
 
 // =========================
-// LOAD PROFILE DATA
+// LOAD PROFILE DATA (ANTI-ERROR 406)
 // =========================
 async function loadProfile(){
+    // Menggunakan maybeSingle() agar tidak memicu error 406 jika data baris users masih kosong (0 rows)
     const { data, error } = await supabaseClient
         .from("users")
         .select("*")
         .eq("id", currentUser.id)
-        .single();
+        .maybeSingle(); 
 
     if(error){
         console.error("Gagal mengambil data dari tabel Supabase:", error.message, error.details);
         return;
     }
 
-    if(data){
-        // Menyelaraskan dengan ID yang ada di file HTML Anda
-        const usernameEl = document.getElementById("username");
-        const userTagEl = document.getElementById("userTag");
-        const bioEl = document.getElementById("profileBio");
-        const roleEl = document.getElementById("roleBadge");
-        const avatarEl = document.getElementById("profileAvatar");
+    // Menyelaraskan dengan ID yang ada di file HTML Anda
+    const usernameEl = document.getElementById("username") || document.getElementById("profileUsername");
+    const userTagEl = document.getElementById("userTag");
+    const bioEl = document.getElementById("profileBio");
+    const roleEl = document.getElementById("roleBadge");
+    const avatarEl = document.getElementById("profileAvatar") || document.getElementById("avatarPreview");
 
-        if(usernameEl) usernameEl.textContent = data.username || "Username";
+    // Jika data user sudah terdaftar di database
+    if(data){
+        if(usernameEl) {
+            if(usernameEl.tagName === "INPUT") usernameEl.value = data.username || "";
+            else usernameEl.textContent = data.username || "Username";
+        }
         if(userTagEl) userTagEl.textContent = data.username ? "@" + data.username : "@username";
-        if(bioEl) bioEl.textContent = data.bio || "No bio yet.";
+        if(bioEl) {
+            if(bioEl.tagName === "TEXTAREA" || bioEl.tagName === "INPUT") bioEl.value = data.bio || "";
+            else bioEl.textContent = data.bio || "No bio yet.";
+        }
         if(roleEl) roleEl.textContent = data.role || "User";
         
         if(data.avatar && avatarEl){
-            // Jika ada url avatar di database, pasang ke tag img
             avatarEl.src = data.avatar;
         }
+    } 
+    // Jika user baru pertama kali mendaftar (datanya belum ada di tabel users)
+    else {
+        console.log("User baru terdeteksi. Silakan isi profil pertama kali.");
+        if(usernameEl && usernameEl.tagName === "INPUT") usernameEl.value = "";
+        if(bioEl && (bioEl.tagName === "TEXTAREA" || bioEl.tagName === "INPUT")) bioEl.value = "";
     }
 }
 
 // =========================
-// AVATAR PREVIEW (Jika ada input file di halaman setup)
+// AVATAR PREVIEW (Preview instan saat memilih file)
 // =========================
 const avatarInput = document.getElementById("avatarInput");
-const avatarPreview = document.getElementById("avatarPreview");
+const avatarPreview = document.getElementById("avatarPreview") || document.getElementById("profileAvatar");
 
 if(avatarInput && avatarPreview){
     avatarInput.addEventListener("change", function(){
@@ -96,7 +109,7 @@ if(avatarInput && avatarPreview){
 }
 
 // =========================
-// SAVE / UPDATE PROFILE (DENGAN UPLOAD GAMBAR)
+// SAVE / UPDATE PROFILE (DENGAN UPLOAD GAMBAR KE STORAGE)
 // =========================
 async function saveProfile(){
     console.log("SAVE PROFILE CLICK");
@@ -118,7 +131,7 @@ async function saveProfile(){
         return;
     }
 
-    // Variabel untuk menampung URL avatar baru
+    // Variabel untuk menampung URL avatar baru jika ada upload
     let avatarUrl = null;
 
     // Ambil file dari input avatar (jika user memilih file baru)
@@ -136,7 +149,7 @@ async function saveProfile(){
             .from("avatars")
             .upload(filePath, file, {
                 contentType: "image/jpeg",
-                upsert: true // Diizinkan oleh policy UPDATE kita
+                upsert: true // Diizinkan oleh policy UPDATE kita untuk menimpa file lama
             });
 
         if (uploadError) {
@@ -162,12 +175,12 @@ async function saveProfile(){
         role: "user"
     };
 
-    // Jika user mengunggah foto baru, sertakan URL-nya untuk di-update ke kolom avatar
+    // Jika user mengunggah foto baru, sertakan URL-nya untuk di-update ke database
     if (avatarUrl) {
         updateData.avatar = avatarUrl;
     }
 
-    // 3. Simpan seluruh data ke tabel "users"
+    // 3. Simpan seluruh data ke tabel "users" (akan membuat baris baru jika belum terdaftar)
     const { error: dbError } = await supabaseClient
         .from("users")
         .upsert(updateData);
