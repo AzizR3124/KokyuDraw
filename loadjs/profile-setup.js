@@ -7,7 +7,7 @@
 // =========================
 const supabaseUrl = "https://dalxlbgqiczesidujcuf.supabase.co";
 
-// Catatan: Ganti key di bawah ini dengan Anon Key asli Anda dari dashboard Supabase jika masih eror!
+
 const supabaseKey = "sb_publishable_S74FfRR4HXhb2P2dkoZY1A_FitlYnRW"; 
 
 const supabaseClient = window.supabase.createClient(
@@ -139,25 +139,26 @@ async function saveProfile(){
         const file = avatarInput.files[0];
 
         // Tentukan nama file tujuan agar SELALU berakhiran .jpg sesuai policy
-        const fileExtension = "jpg";
-        const filePath = `public/${currentUser.id}.${fileExtension}`; // Hasilnya: public/USER_ID.jpg
+        const ext = file.name.split(".").pop();
+const filePath = `public/${currentUser.id}.${ext}`;
 
-        console.log("Mengunggah gambar ke Storage:", filePath);
+console.log("Mengunggah gambar ke Storage:", filePath);
 
-        // 1. Jalankan proses Upload/Upsert ke Storage
-        const { data: uploadData, error: uploadError } = await supabaseClient.storage
-            .from("avatars")
-            .upload(filePath, file, {
-                contentType: "image/jpeg",
-                upsert: true // Diizinkan oleh policy UPDATE kita untuk menimpa file lama
-            });
+const { data: uploadData, error: uploadError } =
+    await supabaseClient.storage
+        .from("avatars")
+        .upload(filePath, file, {
+            upsert: true
+        });
 
-        if (uploadError) {
-            console.error("Gagal mengunggah foto ke Storage:", uploadError.message);
-            alert("Gagal mengunggah foto profil: " + uploadError.message);
-            return;
-        }
+console.log("Upload Data:", uploadData);
+console.log("Upload Error:", uploadError);
 
+if (uploadError) {
+    console.error(uploadError);
+    alert(uploadError.message);
+    return;
+}
         // 2. Ambil Public URL setelah berhasil upload
         const { data: urlData } = supabaseClient.storage
             .from("avatars")
