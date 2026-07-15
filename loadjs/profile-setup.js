@@ -70,6 +70,7 @@ async function loadProfile(){
         if(roleEl) roleEl.textContent = data.role || "User";
         
         if(data.avatar && avatarEl){
+            // Jika ada url avatar di database, pasang ke tag img
             avatarEl.src = data.avatar;
         }
     }
@@ -95,7 +96,7 @@ if(avatarInput && avatarPreview){
 }
 
 // =========================
-// SAVE / UPDATE PROFILE
+// SAVE / UPDATE PROFILE (DENGAN UPLOAD GAMBAR)
 // =========================
 async function saveProfile(){
     console.log("SAVE PROFILE CLICK");
@@ -105,7 +106,7 @@ async function saveProfile(){
         return;
     }
 
-    // Mengambil nilai input (Ganti ID sesuai dengan form input Anda jika ini halaman edit)
+    // Mengambil nilai input teks
     const inputUsernameEl = document.getElementById("profileUsername") || document.getElementById("username");
     const inputBioEl = document.getElementById("profileBio");
 
@@ -117,22 +118,67 @@ async function saveProfile(){
         return;
     }
 
-    const { error } = await supabaseClient
-        .from("users")
-        .upsert({
-            id: currentUser.id,
-            username: username,
-            bio: bio,
-            role: "user"
-        });
+    // Variabel untuk menampung URL avatar baru
+    let avatarUrl = null;
 
-    if(error){
-        console.error("Gagal menyimpan ke Supabase:", error);
-        alert("Error: " + error.message);
+    // Ambil file dari input avatar (jika user memilih file baru)
+    if (avatarInput && avatarInput.files.length > 0) {
+        const file = avatarInput.files[0];
+
+        // Tentukan nama file tujuan agar SELALU berakhiran .jpg sesuai policy
+        const fileExtension = "jpg";
+        const filePath = `public/${currentUser.id}.${fileExtension}`; // Hasilnya: public/USER_ID.jpg
+
+        console.log("Mengunggah gambar ke Storage:", filePath);
+
+        // 1. Jalankan proses Upload/Upsert ke Storage
+        const { data: uploadData, error: uploadError } = await supabaseClient.storage
+            .from("avatars")
+            .upload(filePath, file, {
+                contentType: "image/jpeg",
+                upsert: true // Diizinkan oleh policy UPDATE kita
+            });
+
+        if (uploadError) {
+            console.error("Gagal mengunggah foto ke Storage:", uploadError.message);
+            alert("Gagal mengunggah foto profil: " + uploadError.message);
+            return;
+        }
+
+        // 2. Ambil Public URL setelah berhasil upload
+        const { data: urlData } = supabaseClient.storage
+            .from("avatars")
+            .getPublicUrl(filePath);
+
+        avatarUrl = urlData.publicUrl;
+        console.log("Public URL didapatkan:", avatarUrl);
+    }
+
+    // Siapkan data untuk dikirim ke tabel users
+    const updateData = {
+        id: currentUser.id,
+        username: username,
+        bio: bio,
+        role: "user"
+    };
+
+    // Jika user mengunggah foto baru, sertakan URL-nya untuk di-update ke kolom avatar
+    if (avatarUrl) {
+        updateData.avatar = avatarUrl;
+    }
+
+    // 3. Simpan seluruh data ke tabel "users"
+    const { error: dbError } = await supabaseClient
+        .from("users")
+        .upsert(updateData);
+
+    if(dbError){
+        console.error("Gagal menyimpan data ke tabel database:", dbError);
+        alert("Error: " + dbError.message);
         return;
     }
 
-    alert("Profile berhasil disimpan");
+    alert("Profile berhasil disimpan!");
     window.location.href = "profile.html";
 }
 
@@ -145,7 +191,7 @@ if(saveProfileBtn){
 }
 
 // =========================
-// FUNGSI LOGOUT (BARU)
+// FUNGSI LOGOUT
 // =========================
 function initLogoutButton() {
     const logoutBtn = document.getElementById("logoutBtn");
