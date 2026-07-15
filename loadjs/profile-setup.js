@@ -135,38 +135,44 @@ async function saveProfile(){
     let avatarUrl = null;
 
     // Ambil file dari input avatar (jika user memilih file baru)
-    if (avatarInput && avatarInput.files.length > 0) {
-        const file = avatarInput.files[0];
+if (avatarInput && avatarInput.files.length > 0) {
 
-        // Tentukan nama file tujuan agar SELALU berakhiran .jpg sesuai policy
-        const ext = file.name.split(".").pop();
-const filePath = `public/${currentUser.id}.${ext}`;
+    const file = avatarInput.files[0];
 
-console.log("Mengunggah gambar ke Storage:", filePath);
+    // Ambil ekstensi file (jpg, jpeg, png, webp)
+    const ext = file.name.split(".").pop().toLowerCase();
 
-const { data: uploadData, error: uploadError } =
-    await supabaseClient.storage
-        .from("avatars")
-        .upload(filePath, file, {
-            upsert: true
-        });
+    // Simpan ke folder public di bucket avatars
+    const filePath = `public/${currentUser.id}.${ext}`;
 
-console.log("Upload Data:", uploadData);
-console.log("Upload Error:", uploadError);
+    console.log("Mengunggah gambar:", filePath);
 
-if (uploadError) {
-    console.error(uploadError);
-    alert(uploadError.message);
-    return;
-}
-        // 2. Ambil Public URL setelah berhasil upload
-        const { data: urlData } = supabaseClient.storage
+    // Upload ke Storage
+    const { data: uploadData, error: uploadError } =
+        await supabaseClient.storage
             .from("avatars")
-            .getPublicUrl(filePath);
+            .upload(filePath, file, {
+                upsert: true
+            });
 
-        avatarUrl = urlData.publicUrl;
-        console.log("Public URL didapatkan:", avatarUrl);
+    console.log("Upload Data:", uploadData);
+    console.log("Upload Error:", uploadError);
+
+    if (uploadError) {
+        console.error("Upload gagal:", uploadError);
+        alert("Upload gagal: " + uploadError.message);
+        return;
     }
+
+    // Ambil Public URL
+    const { data: urlData } = supabaseClient.storage
+        .from("avatars")
+        .getPublicUrl(filePath);
+
+    avatarUrl = urlData.publicUrl;
+
+    console.log("Avatar URL:", avatarUrl);
+}
 
     // Siapkan data untuk dikirim ke tabel users
     const updateData = {
